@@ -35,8 +35,8 @@ static int fws801_callback(uint8_t bb[BITBUF_ROWS][BITBUF_COLS],int16_t bits_per
         (bb[1][3] == bb[2][3])) {
 
         /* FWS801 sensor */
-        tsign = (bb[1][1] & 0xF0) == 0x80 ? -1 : 1;
-        tint = (int16_t)(bb[1][1] & 0x0F);
+        tsign = (bb[1][1] & 0x80) == 0x80 ? -1 : 1;
+        tint = (int16_t)(bb[1][1] & 0x7F);
         tdec = (uint16_t)(bb[1][2] & 0x0F);
         fprintf(stderr, "Sensor temperature event:\n");
         fprintf(stderr, "protocol      = FWS801, %d bits\n", bits_per_row[1]);
